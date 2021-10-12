@@ -25,5 +25,9 @@ fun challengeOne(){
 }
 
 fun determineResult(choice: String?){
-    println("Je hebt voor situatie ${choice} gekozen.")
+    when(choice){
+        "A" -> println("You shield swapped and were ready to deal the \n\t initial damage to the 3rd party and scared them off.")
+        "B" -> println("You didn't have enough time to pop your phoenix kit \n\t and get killed in the process.")
+        "C" -> println("You tried to 1v3 the 3rd party on 20HP and died almost instantaneously.")
+    }
 }

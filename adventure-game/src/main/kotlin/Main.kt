@@ -1,6 +1,7 @@
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-    challengeOne()
+   // challengeOne()
+    challengeTwo()
 }
 
 fun challengeOne(){
@@ -21,13 +22,42 @@ fun challengeOne(){
         println("Please chose between A, B or C")
         userChoice = readLine()
     } while (!optionsMap.containsKey(userChoice))
-        determineResult(userChoice)
+        determineResultChallengeOne(userChoice)
 }
 
-fun determineResult(choice: String?){
+fun challengeTwo(){
+    println("For the second challenge, we will ask you to\n\t predict the outcome of a dice roll." +
+            "\n\t this dice will represent how many teams will be contesting your drop spot.")
+    val diceOptions = arrayOf("low","high")
+    var userChoice : String
+    do {
+        println("You get to chose between low (1,2,3) or high (4,5,6)")
+        userChoice = readLine()!!
+    }while (!diceOptions.contains(userChoice))
+    determineResultChallengeTwo(userChoice)
+}
+
+fun determineResultChallengeOne(choice: String?){
     when(choice){
         "A" -> println("You shield swapped and were ready to deal the \n\t initial damage to the 3rd party and scared them off.")
         "B" -> println("You didn't have enough time to pop your phoenix kit \n\t and get killed in the process.")
         "C" -> println("You tried to 1v3 the 3rd party on 20HP and died almost instantaneously.")
     }
+}
+
+fun determineResultChallengeTwo(choice: String?){
+    println("You chose $choice")
+    val diceLows = setOf(1,2,3)
+    val diceHighs = setOf(4,5,6)
+    val randomNr = rollDice()
+
+    if (diceLows.contains(randomNr)){
+        println("There is a low amount of teams contesting your drop spot")
+    } else if (diceHighs.contains(randomNr)){
+        println("YThere is a high amount of teams contesting your drop spot")
+    }
+}
+
+fun rollDice(): Int{
+    return (0..6).random()
 }

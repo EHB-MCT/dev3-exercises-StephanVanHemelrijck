@@ -1,6 +1,6 @@
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-   // challengeOne()
+    // challengeOne()
     challengeTwo()
 }
 
@@ -22,7 +22,7 @@ fun challengeOne(){
         println("Please chose between A, B or C")
         userChoice = readLine()
     } while (!optionsMap.containsKey(userChoice))
-        determineResultChallengeOne(userChoice)
+    determineResultChallengeOne(userChoice)
 }
 
 fun challengeTwo(){
@@ -59,5 +59,5 @@ fun determineResultChallengeTwo(choice: String?){
 }
 
 fun rollDice(): Int{
-    return (0..6).random()
+    return (1..6).random()
 }

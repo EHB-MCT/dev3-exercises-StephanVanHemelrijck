@@ -2,7 +2,8 @@ import kotlin.system.exitProcess
 
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-    challengeOne(hasFleed = false)
+//    challengeOne(hasFleed = false)
+    challengeFour()
 }
 
 fun challengeOne(hasFleed : Boolean = false){
@@ -59,7 +60,28 @@ fun challengeThree(){
     determineResultChallengeThree(userChoice)
 }
 
-fun challengeFour(){}
+fun challengeFour(){
+
+    val number = 69
+    var userChoice : Int
+
+    do {
+        do {
+        println("Guess a number between 1 and 100")
+            userChoice = readLine()!!.toInt()
+            if(userChoice <= 0 || userChoice >= 100 ) {
+                println("You didn't choose a number between 1 and 100, you moron!")
+            }
+        }while (userChoice <= 0 || userChoice >= 100)
+            if (userChoice > number){
+              println("The number you're trying to guess is smaller")
+            }else if(userChoice < number){
+              println("The number you're trying to guess is bigger")
+            }else if(userChoice == number){
+              println("You guessed it right!")
+            }
+    }while (userChoice != number && (userChoice > 0 || userChoice < 101))
+}
 
 fun determineResultChallengeOne(choice: String, hasFleed: Boolean){
     when(choice){

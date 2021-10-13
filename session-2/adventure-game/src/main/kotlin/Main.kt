@@ -1,33 +1,36 @@
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-//    challengeOne()
+    challengeOne(hasFleed = false)
 //    challengeTwo()
     challengeThree()
 }
 
-fun challengeOne(){
-    println("Challenge one initiated")
-    println("In this challenge we will be putting you in a 1v3 situation.")
-    println("You just got out a fight, both your teammates are down, you are down to 20HP, and you hear another team approaching ready to 3rd party you.")
-    println("What do you do first?")
+fun challengeOne(hasFleed: Boolean){
 
-    val optionsMap = mapOf("A" to "I shield swap as fast as possible with someone that got killed in the previous fight"
-        , "B" to "I try to take a phoenix kit, I'm sure I'll have enough time until the 3rd party shows up."
-        ,"C" to "I'll take a 1v3 on 20HP and hope for the best.")
-    println("A) ${optionsMap["A"]}")
-    println("B) ${optionsMap["B"]}")
-    println("C) ${optionsMap["C"]}")
+    if (hasFleed){
+        println("You ran away from a fight, both your teammates followed you, you are low on shields and hp")
+    }else{
+        println("You just got out a fight, both your teammates are down, you are down to 20HP, and you hear another team approaching ready to 3rd party you.")
+    }
+        println("What do you do?")
+        val optionsMap = mapOf("A" to "I run back to a dead body and swap their armor and take their gun if needed"
+            , "B" to "I try to find some heals, I'm sure I'll have enough time until another team shows up."
+            ,"C" to "I'll fight on low hp and hope for the best.")
+        println("A) ${optionsMap["A"]}")
+        println("B) ${optionsMap["B"]}")
+        println("C) ${optionsMap["C"]}")
 
-    var userChoice : String
-    do {
-        println("Please choose between A, B or C")
-        userChoice = readLine()!!
-    } while (!optionsMap.containsKey(userChoice))
-    determineResultChallengeOne(userChoice)
+        var userChoice : String
+        do {
+            println("Please choose between A, B or C")
+            userChoice = readLine()!!
+        } while (!optionsMap.containsKey(userChoice))
+        determineResultChallengeOne(userChoice, hasFleed)
+
 }
 
 fun challengeTwo(){
-    println("For the second challenge, we will ask you to predict the outcome of a dice roll." +
+    println("We will ask you to predict the outcome of a dice roll." +
             "this dice will represent how many teams will be contesting your drop spot.")
     val diceOptions = arrayOf("low","high")
     var userChoice : String
@@ -45,8 +48,12 @@ fun challengeThree(){
     val optionsGuns = mapOf("A" to "I pick up the havoc", "B" to "I pick up the eva-8", "C" to "I start punching the person 50/50ing me")
     var userChoice : String
 
+    println("You are getting 50/50d, what do you do?")
+    println("A) ${optionsGuns["A"]}")
+    println("B) ${optionsGuns["B"]}")
+    println("C) ${optionsGuns["C"]}")
+    
     do {
-        println("You are getting 50/50d, what do you do?")
         println("Choose between A, B or C")
         userChoice = readLine()!!
     } while (!optionsGuns.containsKey(userChoice))
@@ -55,11 +62,19 @@ fun challengeThree(){
 
 fun challengeFour(){}
 
-fun determineResultChallengeOne(choice: String){
+fun determineResultChallengeOne(choice: String, hasFleed: Boolean){
     when(choice){
-        "A" -> println("\tYou shield swapped and were ready to deal the \n\t initial damage to the 3rd party and scared them off.")
-        "B" -> println("\tYou didn't have enough time to pop your phoenix kit \n\t and get killed in the process.")
-        "C" -> println("\tYou tried to 1v3 the 3rd party on 20HP and died almost instantaneously.")
+        "A" -> if (hasFleed){
+            println("It was too risky to get back to a dead body, another team was still looting them, and they killed you.")
+        }else{
+            println("You shield swapped and were ready to deal the initial damage to the 3rd party and scared them off.")
+        }
+        "B" -> if (hasFleed){
+            println("You got away successfully, and were able to loot a different POI")
+        }else{
+            println("You didn't have enough time to pop your phoenix kit and get killed in the process.")
+        }
+        "C" -> println("You tried to fight another team on low hp, but died.")
     }
 }
 
@@ -96,7 +111,8 @@ fun determineResultChallengeThree(choice: String){
         }
         "C" -> {
             println("You start punching him, but quickly realize you wont be able to kill him, so you run away")
-            challengeOne() // Flee
+            val hasFleed = true
+            challengeOne(hasFleed) // Flee
         }
 
     }

@@ -46,15 +46,23 @@ fun determineResultChallengeOne(choice: String?){
 }
 
 fun determineResultChallengeTwo(choice: String?){
-    println("You chose $choice")
     val diceLows = setOf(1,2,3)
     val diceHighs = setOf(4,5,6)
     val randomNr = rollDice()
 
-    if (diceLows.contains(randomNr)){
-        println("There is a low amount of teams contesting your drop spot")
-    } else if (diceHighs.contains(randomNr)){
-        println("YThere is a high amount of teams contesting your drop spot")
+    println("You chose $choice and the dice rolled $randomNr")
+
+    when(choice){
+        "low" -> if (diceLows.contains(randomNr)){
+                    println("You're correct, which means there is \n\t a low amount of teams contesting your drop spot")
+                }else if (diceHighs.contains(randomNr)){
+                    println("You're wrong, which means there is \n\t a high amount of teams contesting your drop spot")
+                }
+        "high" -> if (diceHighs.contains(randomNr)){
+                    println("You're correct, which means there is \n\t a high amount of teams contesting your drop spot")
+                }else if (diceLows.contains(randomNr)){
+                    println("You're wrong, which means there is \n\t a low amount of teams contesting your drop spot")
+        }
     }
 }
 

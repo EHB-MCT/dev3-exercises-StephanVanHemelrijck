@@ -1,9 +1,11 @@
+import kotlin.system.exitProcess
+
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
     challengeOne(hasFleed = false)
 }
 
-fun challengeOne(hasFleed: Boolean){
+fun challengeOne(hasFleed : Boolean = false){
 
     if (hasFleed){
         println("You ran away from a fight, both your teammates followed you, you are low on shields and hp")
@@ -116,8 +118,7 @@ fun determineResultChallengeThree(choice: String){
         }
         "C" -> {
             println("You picked up the Eva-8 and the Bow, but quickly find yourself running out of shotgun ammo so you run away.")
-            val hasFleed = true
-            challengeOne(hasFleed) // Flee
+            challengeOne(hasFleed = true) // Flee
         }
 
     }
@@ -128,5 +129,18 @@ fun rollDice(): Int{
 }
 
 fun gameOver(){
+        val options = arrayOf("Yes","No")
+        var userChoice : String
 
+        println("You died, Game over!")
+    do {
+        println("Do you want to play again?")
+        userChoice = readLine()!!
+    }while (!options.contains(userChoice))
+    if (userChoice == "Yes"){
+        challengeOne()
+        println("Restarting the game.")
+    }else if (userChoice == "No"){
+        print("Thanks for playing!")
+    }
 }

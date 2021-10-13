@@ -11,7 +11,7 @@ fun challengeOne(){
     println("What do you do first?")
 
     val optionsMap = mapOf("A" to "I shield swap as fast as possible with someone \n\t that got killed in the previous fight"
-        , "B" to "I try to take a phoenix kit, I'm sure I'll have enough \n\t time untill the 3rd party shows up."
+        , "B" to "I try to take a phoenix kit, I'm sure I'll have enough \n\t time until the 3rd party shows up."
         ,"C" to "I'll take a 1v3 on 20HP and hope for the best.")
     println("A) ${optionsMap["A"]}")
     println("B) ${optionsMap["B"]}")
@@ -54,14 +54,14 @@ fun determineResultChallengeTwo(choice: String?){
 
     when(choice){
         "low" -> if (diceLows.contains(randomNr)){
-                    println("You're correct, which means there is \n\t a low amount of teams contesting your drop spot")
-                }else if (diceHighs.contains(randomNr)){
-                    println("You're wrong, which means there is \n\t a high amount of teams contesting your drop spot")
-                }
+            println("You're correct, which means there is \n\t a low amount of teams contesting your drop spot")
+        }else if (diceHighs.contains(randomNr)){
+            println("You're wrong, which means there is \n\t a high amount of teams contesting your drop spot")
+        }
         "high" -> if (diceHighs.contains(randomNr)){
-                    println("You're correct, which means there is \n\t a high amount of teams contesting your drop spot")
-                }else if (diceLows.contains(randomNr)){
-                    println("You're wrong, which means there is \n\t a low amount of teams contesting your drop spot")
+            println("You're correct, which means there is \n\t a high amount of teams contesting your drop spot")
+        }else if (diceLows.contains(randomNr)){
+            println("You're wrong, which means there is \n\t a low amount of teams contesting your drop spot")
         }
     }
 }

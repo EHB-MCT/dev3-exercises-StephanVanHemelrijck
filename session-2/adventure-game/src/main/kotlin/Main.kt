@@ -1,9 +1,9 @@
+import kotlin.math.floor
 import kotlin.system.exitProcess
 
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-//    challengeOne(hasFleed = false)
-    challengeFour()
+    challengeOne(hasFleed = false)
 }
 
 fun challengeOne(hasFleed : Boolean = false){
@@ -61,15 +61,15 @@ fun challengeThree(){
 }
 
 fun challengeFour(){
-
-    val number = 69
+    val number = 67
     var userChoice : Int
 
     do {
         do {
-        println("Guess a number between 1 and 100")
+            println("Guess a number between 1 and 100")
             userChoice = readLine()!!.toInt()
             if(userChoice <= 0 || userChoice >= 100 ) {
+                println("Think about the damage you did with your wingman")
                 println("You didn't choose a number between 1 and 100, you moron!")
             }
         }while (userChoice <= 0 || userChoice >= 100)
@@ -79,8 +79,36 @@ fun challengeFour(){
               println("The number you're trying to guess is bigger")
             }else if(userChoice == number){
               println("You guessed it right!")
+              challengeFive()
             }
     }while (userChoice != number && (userChoice > 0 || userChoice < 101))
+}
+
+fun challengeFive(){
+    var options = mutableSetOf("xepa","ndlgees","mhapionc")
+    var optionsCorrect = mutableSetOf("apex","legends","champion")
+    var teller = 0
+    var isCorrect = false
+    do{
+        var randomAnagram = options.random()
+        println("You have been given this anagram: \n$randomAnagram")
+        var indexPos = options.indexOf(randomAnagram)
+        var elementAtIndex = optionsCorrect.elementAt(indexPos)
+        options.remove(randomAnagram)
+        optionsCorrect.remove(elementAtIndex)
+        println("Solve it. You have ${3-teller} chances.")
+        var userChoice = readLine()!!
+       if (userChoice == elementAtIndex){
+           teller = 3
+           gameWon()
+       }else{
+           if (teller == 2){
+               gameOver()
+           }
+        teller++
+       }
+    }while(teller != 3)
+
 }
 
 fun determineResultChallengeOne(choice: String, hasFleed: Boolean){
@@ -135,14 +163,13 @@ fun determineResultChallengeThree(choice: String){
             gameOver() // Failed
         }
         "B" -> {
-            println("You picked up the Wingman and R99, you nearly 1 clipped an octane with your R99\n,he launch padded away but you finished him off with your wingman")
+            println("You picked up the Wingman and R99, you nearly 1 clipped an octane with your R99\n,he launch padded away but you finished him off with a 67dmg headshot with your wingman")
             challengeFour() // Succeeded
         }
         "C" -> {
             println("You picked up the Eva-8 and the Bow, but quickly find yourself running out of shotgun ammo so you run away.")
             challengeOne(hasFleed = true) // Flee
         }
-
     }
 }
 
@@ -151,10 +178,27 @@ fun rollDice(): Int{
 }
 
 fun gameOver(){
-        val options = arrayOf("Yes","No")
-        var userChoice : String
+    val options = arrayOf("Yes","No")
+    var userChoice : String
 
-        println("You died, Game over!")
+    println("You died, Game over!")
+    do {
+        println("Do you want to play again?")
+        userChoice = readLine()!!
+    }while (!options.contains(userChoice))
+    if (userChoice == "Yes"){
+        challengeOne()
+        println("Restarting the game.")
+    }else if (userChoice == "No"){
+        print("Thanks for playing!")
+    }
+}
+
+fun gameWon(){
+    val options = arrayOf("Yes","No")
+    var userChoice : String
+
+    println("Winner Winner Chicken Dinner!\nDo you want to play again?")
     do {
         println("Do you want to play again?")
         userChoice = readLine()!!

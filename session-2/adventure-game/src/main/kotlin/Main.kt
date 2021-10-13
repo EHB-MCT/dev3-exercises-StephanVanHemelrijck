@@ -1,7 +1,8 @@
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-    // challengeOne()
-    challengeTwo()
+//    challengeOne()
+//    challengeTwo()
+    challengeThree()
 }
 
 fun challengeOne(){
@@ -17,27 +18,44 @@ fun challengeOne(){
     println("B) ${optionsMap["B"]}")
     println("C) ${optionsMap["C"]}")
 
-    var userChoice : String?
+    var userChoice : String
     do {
-        println("Please chose between A, B or C")
-        userChoice = readLine()
+        println("Please choose between A, B or C")
+        userChoice = readLine()!!
     } while (!optionsMap.containsKey(userChoice))
     determineResultChallengeOne(userChoice)
 }
 
 fun challengeTwo(){
-    println("For the second challenge, we will ask you topredict the outcome of a dice roll." +
+    println("For the second challenge, we will ask you to predict the outcome of a dice roll." +
             "this dice will represent how many teams will be contesting your drop spot.")
     val diceOptions = arrayOf("low","high")
     var userChoice : String
     do {
-        println("You get to chose between low (1,2,3) or high (4,5,6)")
+        println("You get to choose between low (1,2,3) or high (4,5,6)")
         userChoice = readLine()!!
     }while (!diceOptions.contains(userChoice))
     determineResultChallengeTwo(userChoice)
 }
 
-fun determineResultChallengeOne(choice: String?){
+fun challengeThree(){
+    println("You have just landed in the streamer building in \"Fragment East\"")
+    println("On the ground you see an eva-8 and a havoc")
+
+    val optionsGuns = mapOf("A" to "I pick up the havoc", "B" to "I pick up the eva-8", "C" to "I start punching the person 50/50ing me")
+    var userChoice : String
+
+    do {
+        println("You are getting 50/50d, what do you do?")
+        println("Choose between A, B or C")
+        userChoice = readLine()!!
+    } while (!optionsGuns.containsKey(userChoice))
+    determineResultChallengeThree(userChoice)
+}
+
+fun challengeFour(){}
+
+fun determineResultChallengeOne(choice: String){
     when(choice){
         "A" -> println("\tYou shield swapped and were ready to deal the \n\t initial damage to the 3rd party and scared them off.")
         "B" -> println("\tYou didn't have enough time to pop your phoenix kit \n\t and get killed in the process.")
@@ -45,7 +63,7 @@ fun determineResultChallengeOne(choice: String?){
     }
 }
 
-fun determineResultChallengeTwo(choice: String?){
+fun determineResultChallengeTwo(choice: String){
     val diceLows = setOf(1,2,3)
     val diceHighs = setOf(4,5,6)
     val randomNr = rollDice()
@@ -66,6 +84,28 @@ fun determineResultChallengeTwo(choice: String?){
     }
 }
 
+fun determineResultChallengeThree(choice: String){
+    when(choice){
+        "A" -> {
+            println("You picked up the havoc, but because of the havoc's charging time you lose the fight.")
+            gameOver() // Failed
+        }
+        "B" -> {
+            println("You picked up the eva-8, you killed the person 50/50ing you because he couldn't shoot back in time")
+            challengeFour() // Succeeded
+        }
+        "C" -> {
+            println("You start punching him, but quickly realize you wont be able to kill him, so you run away")
+            challengeOne() // Flee
+        }
+
+    }
+}
+
 fun rollDice(): Int{
     return (1..6).random()
+}
+
+fun gameOver(){
+
 }

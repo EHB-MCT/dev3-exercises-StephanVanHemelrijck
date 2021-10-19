@@ -1,6 +1,3 @@
-import kotlin.math.floor
-import kotlin.system.exitProcess
-
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
     challengeOne(hasFleed = false)
@@ -85,19 +82,18 @@ fun challengeFour(){
 }
 
 fun challengeFive(){
-    var options = mutableSetOf("xepa","ndlgees","mhapionc")
-    var optionsCorrect = mutableSetOf("apex","legends","champion")
+    val options = mutableSetOf("xepa","ndlgees","mhapionc")
+    val optionsCorrect = mutableSetOf("apex","legends","champion")
     var teller = 0
-    var isCorrect = false
     do{
-        var randomAnagram = options.random()
+        val randomAnagram = options.random()
         println("You have been given this anagram: \n$randomAnagram")
-        var indexPos = options.indexOf(randomAnagram)
-        var elementAtIndex = optionsCorrect.elementAt(indexPos)
+        val indexPos = options.indexOf(randomAnagram)
+        val elementAtIndex = optionsCorrect.elementAt(indexPos)
         options.remove(randomAnagram)
         optionsCorrect.remove(elementAtIndex)
         println("Solve it. You have ${3-teller} chances.")
-        var userChoice = readLine()!!
+        val userChoice = readLine()!!
        if (userChoice == elementAtIndex){
            teller = 3
            gameWon()
@@ -178,27 +174,19 @@ fun rollDice(): Int{
 }
 
 fun gameOver(){
-    val options = arrayOf("Yes","No")
-    var userChoice : String
-
     println("You died, Game over!")
-    do {
-        println("Do you want to play again?")
-        userChoice = readLine()!!
-    }while (!options.contains(userChoice))
-    if (userChoice == "Yes"){
-        challengeOne()
-        println("Restarting the game.")
-    }else if (userChoice == "No"){
-        print("Thanks for playing!")
-    }
+    askToPlayAgain()
 }
 
 fun gameWon(){
+    println("Winner Winner Chicken Dinner!\nDo you want to play again?")
+    askToPlayAgain()
+}
+
+fun askToPlayAgain(){
     val options = arrayOf("Yes","No")
     var userChoice : String
 
-    println("Winner Winner Chicken Dinner!\nDo you want to play again?")
     do {
         println("Do you want to play again?")
         userChoice = readLine()!!

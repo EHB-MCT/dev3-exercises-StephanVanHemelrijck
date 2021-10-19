@@ -1,6 +1,6 @@
-open abstract class Person(open val name: String) {
-    open fun introduce(){
+open abstract class Person(open val name: String): ChatPartner {
+    override fun introduce(){
         println("Hi! I am $name")
     }
-    open fun talk(){}
+    override fun talk(){}
 }

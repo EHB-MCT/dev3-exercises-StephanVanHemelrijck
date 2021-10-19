@@ -1,4 +1,4 @@
-class Chatbot(name: String): Person(name) {
+class Chatbot(name: String): ChatPartner {
     override fun introduce(){
         println("Hi! I'm Clippy!")
     }

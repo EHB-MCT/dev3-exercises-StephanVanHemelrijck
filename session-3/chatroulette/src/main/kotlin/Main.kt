@@ -1,7 +1,9 @@
 fun main(){
-    val stephan = Person("Stephan")
-    val pieter = Person("Pieter")
-    val persons = arrayOf(stephan,pieter)
-    val randomPersons = persons.random()
-    println(randomPersons.introduce())
+    val stephan = Student("Stephan")
+    val pieter = Comedian("Pieter")
+    val mike = Teacher("Mike")
+    val persons = arrayOf(stephan,pieter,mike)
+    val randomPerson = persons.random()
+    randomPerson.introduce()
+    randomPerson.talk()
 }

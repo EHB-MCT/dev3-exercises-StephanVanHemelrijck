@@ -1,30 +1,14 @@
 fun main(){
     println("Do you have what it takes to clutch up in Apex Legends?")
-    challengeOne(hasFleed = false)
+    initChallengeOne()
+
 }
-
-fun challengeOne(hasFleed : Boolean = false){
-
-    if (hasFleed){
-        println("You ran away from a fight, both your teammates followed you, you are low on shields and hp")
-    }else{
-        println("You just got out a fight, both your teammates are down, you are down to 20HP, and you hear another team approaching ready to 3rd party you.")
-    }
-        println("What do you do?")
-        val optionsMap = mapOf("A" to "I run back to a dead body and swap their armor and take their gun if needed"
-            , "B" to "I try to find some heals, I'm sure I'll have enough time until another team shows up."
-            ,"C" to "I'll fight on low hp and hope for the best.")
-        println("A) ${optionsMap["A"]}")
-        println("B) ${optionsMap["B"]}")
-        println("C) ${optionsMap["C"]}")
-
-        var userChoice : String
-        do {
-            println("Please choose between A, B or C")
-            userChoice = readLine()!!
-        } while (!optionsMap.containsKey(userChoice))
-        determineResultChallengeOne(userChoice, hasFleed)
-
+fun initChallengeOne(hasFleed: Boolean = false){
+    val fightChallenge = fightSimulation(mapOf("A" to "I run back to a dead body and swap their armor and take their gun if needed.",
+        "B" to "I try to find some heals, I'm sure I'll have enough time until another team shows up.",
+        "C" to "I'll fight on low hp and hope for the best."),
+        hasFleed)
+    fightChallenge.run()
 }
 
 fun challengeTwo(){
@@ -164,7 +148,7 @@ fun determineResultChallengeThree(choice: String){
         }
         "C" -> {
             println("You picked up the Eva-8 and the Bow, but quickly find yourself running out of shotgun ammo so you run away.")
-            challengeOne(hasFleed = true) // Flee
+            initChallengeOne(true) // Flee
         }
     }
 }
@@ -192,7 +176,7 @@ fun askToPlayAgain(){
         userChoice = readLine()!!
     }while (!options.contains(userChoice))
     if (userChoice == "Yes"){
-        challengeOne()
+        main()
         println("Restarting the game.")
     }else if (userChoice == "No"){
         print("Thanks for playing!")

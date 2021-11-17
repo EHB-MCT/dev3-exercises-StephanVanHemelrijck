@@ -1,0 +1,31 @@
+How much did William Brown pay in 2004?
+
+	SELECT payments.paymentDate, SUM(payments.amount) , customers.customerNumber, customers.customerName, customers.contactLastName, customers.contactFirstName FROM payments
+	INNER JOIN customers ON payments.customerNumber = customers.customerNumber
+	WHERE payments.paymentDate LIKE '2004%' 
+	AND customers.contactLastName = 'Brown' AND customers.contactFirstName = 'William'
+	GROUP BY customers.customerNumber
+	
+	Answer = 38281.51€
+
+
+Get a list of customer names and the name of their representative. 
+Only include customers with a representative.
+
+	SELECT customers.customerName, employees.employeeNumber AS 'Employee Number', employees.lastName AS 'Employee Last Name', employees.firstName AS 'Employee First Name'
+	FROM customers
+	INNER JOIN employees on employees.employeeNumber = customers.salesRepEmployeeNumber
+
+	Answer = https://imgur.com/TPmU56c
+
+What office is customer The Sharp Gifts Warehouse tied to?
+	
+	SELECT customers.customerName, offices.city AS `Office's city`, offices.addressLine1, offices.addressLine2
+	FROM customers
+	INNER JOIN offices ON offices.`state` = customers.`state`
+	WHERE customers.customerName = 'The Sharp Gifts Warehouse'
+
+	Answer = San Francisco
+
+	
+	

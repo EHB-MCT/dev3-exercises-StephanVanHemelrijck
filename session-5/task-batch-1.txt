@@ -1,0 +1,34 @@
+What is the product with this number: S24_3856?
+
+	SELECT productName FROM products 
+	WHERE productCode = 'S24_3856' 
+
+	Answer =  1956 Porsche 356A Coupe
+
+What is the average product price?
+
+	SELECT AVG(buyPrice) FROM products
+
+	Answer = 54.395182
+
+How many products have “Ford” in the name?
+
+	SELECT COUNT(productName) FROM products 
+	WHERE productName LIKE '%ford%'
+
+	Answer = 15
+
+What is the most expensive product?
+
+	SELECT MAX(buyPrice) FROM products
+
+	Answer = 103.42
+
+How many ships are in the products?
+
+	SELECT COUNT(productLine) FROM products
+	WHERE productLine = 'Ships'
+
+	Answer = 9
+	
+

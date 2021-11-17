@@ -1,0 +1,32 @@
+How many orders were made by customer with nr 328?
+
+	SELECT COUNT(orderNumber) FROM orders
+	WHERE customerNumber = 328
+
+	Answer = 3
+
+How many orders were made by customer Julie Young?
+
+	SELECT customers.*, COUNT(customers.customerNumber) AS 'Amount of Orders' FROM customers
+	INNER JOIN orders ON orders.customerNumber = customers.customerNumber
+	WHERE contactLastName = 'Young' AND contactFirstName = 'Julie'
+
+	Answer = 3 + Gets details about her
+
+How many customers from the USA have a credit limit of 0?
+
+	SELECT COUNT(customerNumber) FROM customers
+	WHERE customers.country = 'USA' AND creditLimit = 0
+
+	Answer = 1
+
+Who makes the biggest payment on average?
+
+	SELECT AVG(payments.amount) AS 'Average Payment', customers.* 
+	FROM payments
+	INNER JOIN customers ON payments.customerNumber = customers.customerNumber
+	GROUP BY payments.customerNumber
+	ORDER BY AVG(payments.amount) DESC
+	LIMIT 1
+
+	Answer = Thompson Valarie

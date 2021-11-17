@@ -22,10 +22,8 @@ What office is customer The Sharp Gifts Warehouse tied to?
 	
 	SELECT customers.customerName, offices.city AS `Office's city`, offices.addressLine1, offices.addressLine2
 	FROM customers
-	INNER JOIN offices ON offices.`state` = customers.`state`
+	INNER JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
+	INNER JOIN offices ON employees.officeCode = offices.officeCode
 	WHERE customers.customerName = 'The Sharp Gifts Warehouse'
 
 	Answer = San Francisco
-
-	
-	
